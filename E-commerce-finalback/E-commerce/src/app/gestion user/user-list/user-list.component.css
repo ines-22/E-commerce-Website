@@ -1,0 +1,42 @@
+table {
+    width: 100%;
+
+}
+.table td, .table th {
+    border: 0.5px  #dddddd67;
+    padding: 8px;
+   
+  }
+  
+  .table tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .table tr:hover {background-color: #ddd;}
+  
+  .table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #000f0ede;
+    color: white;
+  }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 40%;
+}
+
+.search-hero {
+    max-width: 500px;
+    padding-bottom: 20px;
+    margin: auto;
+}
+
+.form-control {
+    box-shadow: 0 10px 10px 0 #c1f0e6;
+    border: none;
+    color: rgb(38, 136, 136);
+}
+
+.form-control::placeholder {
+    font-family: FontAwesome;
+}

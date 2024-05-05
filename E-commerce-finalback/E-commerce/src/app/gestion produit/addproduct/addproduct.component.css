@@ -1,0 +1,22 @@
+.add-to-cart,
+.like {
+  background: #2a9d8f;
+  padding: 8px 16px;
+  border: none;
+  text-transform: UPPERCASE;
+  font-weight: bold;
+  color: #fff;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+.add-to-cart:hover,
+.like:hover {
+  background: #2a9d90d3;
+  color: #fff;
+}
+
+input,
+select {
+  margin-bottom: 8px;
+}

@@ -1,0 +1,124 @@
+<div class="container mt-4 w-100">
+  <div class="row main-content text-center">
+    <div class="text-center company__info box flex flex-row align-content-center justify-content-center w-100">
+      <app-sidebar></app-sidebar>
+      <div class="col-md-8 col-xs-12 col-sm-12 flex flex-row align-content-center justify-content-center login_form">
+        <small *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger">
+          New account creation failed : {{ errorMessage }}</small>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          New account created successfully
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <h1 class="animate__animated animate__bounce mt-5">
+              <strong>New account</strong>
+            </h1>
+          </div>
+          <div class="row">
+            <form class="form-group animate__animated animate__backInDown" name="form"
+              (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <div class="row">
+                <input type="text" name="first_name" [(ngModel)]="form.first_name" id="first_name"
+                  placeholder="Fisrtname" class="form__input" required #first_name="ngModel"
+                  [class.is-invalid]="first_name.invalid && first_name.touched" minlength="3" maxlength="20"
+                  pattern="^[a-z]+" />
+                <div *ngIf="
+                    first_name.errors &&
+                    first_name.invalid &&
+                    first_name.touched
+                  ">
+                  <small class="text-danger" *ngIf="first_name.errors?.['required']">Firstname required</small>
+                  <small class="text-danger"
+                    *ngIf="first_name.errors?.['minlength'] || first_name.errors?.['maxlength']">Fisrstname should
+                    contain between 3 and 20 caracters</small>
+                  <small class="text-danger" *ngIf="first_name.errors?.['pattern']">Invalid firstname, it should contain
+                    only caracters
+                    <br />
+                  </small>
+                </div>
+              </div>
+              <div class="row">
+                <input type="text" [(ngModel)]="form.family_name" name="family_name" id="family_name"
+                  placeholder="Lastname" class="form__input" required #family_name="ngModel" [class.is-invalid]="
+                    family_name.invalid && family_name.touched
+                  " minlength="3" maxlength="20" pattern="^[a-z]+" />
+                <div *ngIf="
+                    family_name.errors &&
+                    family_name.invalid &&
+                    family_name.touched
+                  ">
+                  <small class="text-danger" *ngIf="family_name.errors?.[ 'required'] ">Lastname required</small>
+                  <small class="text-danger"
+                    *ngIf="family_name.errors?.['minlength'] || family_name.errors?.['maxlength']">Lastname should
+                    contain between 3 and 20 caracters</small>
+                  <small class="text-danger" *ngIf="family_name.errors?.['pattern']">Invalid lastname, it should contain
+                    only caracters
+                    <br />
+                  </small>
+                </div>
+              </div>
+
+              <div class="row">
+                <input type="email" id="email" placeholder="Email (prenom.nom@gmail.com) " class="form__input"
+                  name="email" [(ngModel)]="form.email" email #email="ngModel" required
+                  [class.is-invalid]="email.invalid && email.touched" pattern=".+@gmail+\.com" minlength="18"
+                  maxlength="52" />
+                <div *ngIf="email.errors && email.invalid && email.touched">
+                  <small class="text-danger" *ngIf="email.errors?.['required']">Email required</small>
+                  <small class="text-danger" *ngIf="email.errors?.['pattern']">l'Email n'est pas valide , il doit etre
+                    sous la forme :
+                    prenom.nom&#64;gmail.com</small>
+                  <small class="text-danger" *ngIf="email.errors?.['minlength'] || email.errors?.['maxlength']">Email
+                    should contain between 18 and 52 caracters</small>
+                </div>
+              </div>
+              <div class="row">
+                <input type="password" name="password" id="password" placeholder="Password (at least 8 caracters)"
+                  class="form__input" [(ngModel)]="form.password" required minlength="8" maxlength="20"
+                  #password="ngModel" />
+              </div>
+              <div *ngIf="password.errors && password.invalid && password.touched">
+                <small class="text-danger" *ngIf="password.errors?.['required']">Password required</small>
+                <small class="text-danger"
+                  *ngIf="password.errors?.['minlength']||password.errors?.['maxlength']">Password should contain between
+                  8 and 21 caracters.</small>
+              </div>
+              <div class="row">
+                <input type="password" ngModel name="CPassword" id="CPassword" placeholder="Confirmer your password"
+                  class="form__input" required minlength="8" [(ngModel)]="form.CPassword" #CPassword="ngModel"
+                  [class.is-invalid]="CPassword.invalid && CPassword.touched" />
+              </div>
+              <div *ngIf="
+                  (CPassword.errors &&
+                    CPassword.invalid &&
+                    CPassword.touched) ||
+                  password.value != CPassword.value
+                ">
+                <small class="text-danger" *ngIf="password.errors?.['required']">Password required</small>
+                <small class="text-danger" [class.d-none]="
+                    password.value == CPassword.value || CPassword.untouched
+                  ">The 2 passwords are not identical</small>
+              </div>
+
+              <div class="row">
+                <input type="number" [(ngModel)]="form.mobile" name="mobile" id="mobile" placeholder="Mobile"
+                  class="form__input" required #mobile="ngModel" [class.is-invalid]="mobile.invalid && mobile.touched"
+                  maxlength="8" min="0" pattern="^[0-9]+" />
+                <div *ngIf="mobile.errors && mobile.invalid && mobile.touched">
+                  <small class="text-danger" *ngIf="mobile.errors?.['required']">Number required</small>
+                </div>
+              </div>
+              <input [disabled]="f.form.invalid" type="submit" value="créer" class="btn-default" />
+            </form>
+          </div>
+          <div class="row mt-3 md-5">
+            <p>
+              Already have an account?
+              <a routerLink="/login" routerLinkActive="active">Login</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

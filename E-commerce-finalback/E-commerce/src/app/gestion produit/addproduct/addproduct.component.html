@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <h1 class="fw-bold fs-2 mb-3">
+    @if (new) {Add Product} @else {Update Product}
+  </h1>
+  <form #form="ngForm" (ngSubmit)="OnSubmit(form)" class="row">
+    <div class="col" style="margin-right: 16px">
+      <div>
+        <label for="productName"> Title </label>
+        <input type="text" [ngModel]="product.productName" #content="ngModel" name="productName" class="form-control" />
+        <label for="productDescription"> Description </label>
+        <input type="text" [ngModel]="product.productDescription" #content="ngModel" name="productDescription"
+          class="form-control" />
+        <label for="productPrice"> Price </label>
+        <input type="number" [ngModel]="product.productPrice" #content="ngModel" name="productPrice"
+          class="form-control" />
+        <label for="quantityInStock"> Quantity In Stock </label>
+        <input type="number" [ngModel]="product.quantityInStock" #content="ngModel" name="quantityInStock"
+          class="form-control" />
+        <label for="productSize">Product Size</label>
+        <select [ngModel]="product.productSize" #content="ngModel" name="productSize" class="form-select">
+          @for (item of size; track item) {
+          <option value="{{ item.value }}">{{ item.label }}</option>
+          }
+        </select>
+        <label for="productColor">Product Color </label>
+        <select [ngModel]="product.productColor" #content="ngModel" name="productColor" class="form-select">
+          @for (item of color; track item) {
+          <option value="{{ item }}">{{ item }}</option>
+          }
+        </select>
+
+        <label for="productSeason">Product Season </label>
+        <select [ngModel]="product.productSeason" #content="ngModel" name="productSeason" class="form-select">
+          @for (item of season; track item) {
+          <option value="{{ item }}">{{ item }}</option>
+          }
+        </select>
+
+        <label for="productSexe">Product Sexe </label>
+        <select [ngModel]="product.productSexe" #content="ngModel" name="productSexe" class="form-select">
+          <option value="Woman">Woman</option>
+          <option value="Man">Man</option>
+        </select>
+      </div>
+    </div>
+    <div class="col d-flex align-items-center mh-100">
+      @if (url) {
+      <img class="w-100 rounded object-fit-cover" style="height: 500px" src="{{ url }}" />
+      } @else { <input type="file" (change)="onFileChange($event)" />}
+    </div>
+    <button class="add-to-cart btn btn-default mt-3" type="submit">
+      @if (new) {Add Product} @else {Update Product}
+    </button>
+  </form>
+</div>

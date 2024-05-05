@@ -1,0 +1,13 @@
+img {
+  width: 250px;
+  height: 250%;
+}
+
+.container-fluid {
+  font-weight: 700;
+  font-size: larger;
+  color: #ffffff;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}

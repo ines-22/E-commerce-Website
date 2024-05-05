@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark" style="height: 80px">
+  <div class="container-fluid">
+    <div class="navbar-collapse flex flex-row justify-content-between align-content-between"
+      id="navbarSupportedContent">
+      <div class="mx-3">
+        <a class="navbar-brand m" href="">
+          <img width="50px" style="border-radius: 25px" src="../../assets/images/shopping.png" />
+          Joya
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div *ngIf="showAdminBoard" style="display: flex; justify-content: flex-end">
+
+      </div>
+      <ul class="navbar-nav ml-auto mb2-m mb-lg-0 auto"
+        style="display: flex; list-style-type: none; margin: -10; padding: 0" *ngIf="isLoggedIn">
+
+      </ul>
+
+      <div *ngIf="!isLoggedIn" style="display: flex; justify-content: flex-end; margin-left: 1100px">
+        <button *ngIf="!isLoggedIn" type="button " class="btn-default" routerLink="/login">
+          Login
+        </button>
+        <button *ngIf="!isLoggedIn" type="button " class="btn-default" routerLink="/signup">
+          Signup
+        </button>
+      </div>
+      <div *ngIf="showAdminBoard" style="display: flex; justify-content: flex-end">
+        <ul class="navbar-nav ml-auto mb2-m mb-lg-0 auto"
+          style="display: flex; list-style-type: none; margin: -10; padding: 0" *ngIf="isLoggedIn">
+
+          <li class="nav-item">
+            <a *ngIf="isLoggedIn" class="nav-link active navbar-brand" href="user-list">List of users
+              <img width="20px" height="20px" src="../../assets/images/groupe.png" />
+            </a>
+
+            <a class="nav-link active navbar-brand" href="profile">
+              {{ username }}
+              <img width="20px" height="20px" style="border-radius: 20px" src="../../assets/images/user_1.jpg" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active navbar-brand" (click)="logout()">
+              <img src="assets/images/logout3.png" style="border-radius: 20px; cursor: pointer" width="20px"
+                height="20px" alt="file " />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="!showAdminBoard" style="display: flex; justify-content: flex-end">
+        <ul class="navbar-nav ml-auto mb2-m mb-lg-0 auto"
+          style="display: flex; list-style-type: none; margin: -10; padding: 0" *ngIf="isLoggedIn">
+
+          <li class="nav-item">
+            <a class="nav-link active navbar-brand" routerLink="cart">
+              <img width="20px" height="20px" src="../../assets/images/shopping-cart.png" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="dropdown-toggle bg-transparent" style="all: unset" id="dropdownMenu2"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active navbar-brand" href="profile">
+                  {{ username }}
+                  <img width="20px" height="20px" style="border-radius: 20px" src="../../assets/images/user_1.jpg" />
+                </a>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li>
+                  <a class="w-100 m-0 p-0" routerLink="profile">
+                    <button class="dropdown-item" type="button">
+                      My profil
+                    </button>
+                  </a>
+                </li>
+                <li>
+                  <a class="w-100 m-0 p-0" routerLink="history">
+                    <button class="dropdown-item" type="button">History</button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link active navbar-brand" (click)="logout()" style="cursor: pointer">
+              <img src="assets/images/logout3.png" style="border-radius: 20px" width="20px" height="20px" alt="file " />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

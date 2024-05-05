@@ -1,0 +1,68 @@
+<div *ngIf="!isLoggedIn" class="container">
+  <div class="row main-content text-center">
+    <div class="text-center flex flex-row company__info box">
+      <app-sidebar></app-sidebar>
+      <div class="col-xs-12 col-sm-12 login_form">
+        <div class="container-fluid" *ngIf="!isLoggedIn">
+          <div class="row">
+            <h1 class="animate__animated animate__bounce mt-5">
+              <strong>Connexion</strong>
+            </h1>
+          </div>
+          <div class="row flex flex-column justify-content-center align-content-center">
+            <small *ngIf="errorMessage != '' && f.submitted && isLoginFailed" class="text-danger">{{ errorMessage
+              }}</small>
+            <form class="form-group animate__animated animate__backInDown" name="form"
+              (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <div class="row">
+                <input type="email" id="email" placeholder="Email (firstname.lastname@gmail.com) " class="form__input"
+                  name="email" [(ngModel)]="form.email" email #email="ngModel" required
+                  [class.is-invalid]="email.invalid && email.touched" pattern=".+@gmail+\.com" minlength="18"
+                  maxlength="52" />
+                <div *ngIf="email.errors && email.invalid && email.touched">
+                  <small class="text-danger" *ngIf="email.errors?.['required']">Email required</small>
+                  <small class="text-danger" *ngIf="email.errors?.['pattern']">Non valid Email , it should be like :
+                    firstname.lastname&#64;gmail.com</small>
+                  <small class="text-danger" *ngIf="email.errors?.['minlength'] || email.errors?.['maxlength']">Email
+                    should contain between 18 and 52 caracters</small>
+                </div>
+              </div>
+              <div class="row">
+                <input type="password" name="password" id="password" placeholder="Password (min 8 caracters)"
+                  class="form__input" [(ngModel)]="form.password" required minlength="8" #password="ngModel" />
+              </div>
+              <div *ngIf="password.errors && password.invalid && password.touched">
+                <small class="text-danger" *ngIf="password.errors?.['required']">Password required</small>
+                <small class="text-danger" *ngIf="password.errors?.['minlength']">Password should contain at least 8
+                  caracters</small>
+              </div>
+              <input [disabled]="f.form.invalid" type="submit" value="Login" class="btn-default" />
+              <br />
+            </form>
+          </div>
+          <br />
+          <div class="row" *ngIf="!isLoggedIn">
+            <label><input type="checkbox" name="remember" /> Remember me
+            </label>
+            <p>
+              <a routerLink="/forgotpassword" routerLinkActive="active">Forgot password?</a>
+            </p>
+          </div>
+          <div class="row md-5" *ngIf="!isLoggedIn">
+            <p>
+              You don't have an account?
+              <a routerLink="/signup" routerLinkActive="active">Sign up</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoggedIn" class="container mt-2">
+  <div class="card text-center" style="color: #2a9d8f; padding: 5px">
+    <div class="panel panel-primary"></div>
+    <app-product></app-product>
+  </div>
+</div>

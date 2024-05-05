@@ -1,0 +1,41 @@
+.purchase-history-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.total-container {
+  max-width: 250px;
+  background-color: #2a9d8f;
+  color: white;
+  margin: 5px auto;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-left: 50px;
+}
+
+.table-striped {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-striped th,
+.table-striped td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.table-striped th {
+  background-color: rgb(0, 0, 0);
+  color: aliceblue;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #2a9d8f;
+  font-weight: bold;
+}

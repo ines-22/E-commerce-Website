@@ -1,0 +1,77 @@
+<div class="mx-5" style="margin-top: 5rem">
+  <style>
+    table * {
+      color: white;
+      border: none;
+    }
+  </style>
+  <div class="cart-container">
+    <h1 class="title" style="text-align: center">Cart</h1>
+    <br />
+    <div class="table-striped">
+      <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Date Added to Cart</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+        <tbody *ngFor="let item of cartItems">
+          <tr>
+            <td>{{ item.product.productName }}</td>
+            <td>{{ item.product.productPrice }}</td>
+            <td>
+              <div class="d-flex" style="align-items: center">
+                <p style="margin-right: 1rem; color: black">
+                  x{{ item.quantity }}
+                </p>
+                <button class="bg-transparent" (click)="decreaseQuantity(item)">
+                  <fa-icon [icon]="caretDown" [style.color]="'#faa'" class="mx-1" size="2x"></fa-icon>
+                </button>
+                <button class="bg-transparent">
+                  <fa-icon [icon]="caretUp" [style.color]="'#afa'" class="mx-1" size="2x"
+                    (click)="increaseQuantity(item)"></fa-icon>
+                </button>
+              </div>
+            </td>
+            <td>{{ item.addedOn }}</td>
+            <td>{{ item.totalPrice }}</td>
+            <td>
+              <button style="color: red" (click)="deleteProduct(item)">
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+
+    <table>
+      <tbody>
+        <tr>
+          <th scope="row"></th>
+
+          <td>
+            <h4 style="color: rgb(64, 58, 58)">
+              <span style="color: rgb(38, 136, 136); font-weight: bold">Total price</span>
+              {{ getTotal() | number : "1.2-2" }} TD
+            </h4>
+          </td>
+          <td></td>
+          <td></td>
+          <td>
+            <div class="Checkout-btn-container" style="margin-left: 1150px">
+              <button class="btn btn-successs" *ngIf="cartItems" routerLink="/checkout">
+                Checkout
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
